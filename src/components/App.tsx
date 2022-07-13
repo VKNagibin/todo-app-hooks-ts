@@ -85,7 +85,7 @@ function App() {
         let prevArray = todoArray.slice();
         let unmarkedTodos = prevArray.filter(item => item.checked === false);
         setTodoArray(unmarkedTodos);
-        setStorageHandler(prevArray);
+        setStorageHandler(unmarkedTodos);
 
     }
 
