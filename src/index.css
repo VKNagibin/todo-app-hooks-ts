@@ -8,11 +8,3 @@
   font-family: 'FuturaPTWebMedium';
   font-size: 25px;
 }
-
-.checked p {
-  text-decoration: line-through;
-}
-
-.checked {
-  opacity: .3;
-}

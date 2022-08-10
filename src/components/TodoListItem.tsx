@@ -9,6 +9,15 @@ const ListItem = styled.li`
   column-gap: 20px;
   align-items: center;
   width: 500px;
+
+  &.checked p {
+    text-decoration: line-through;
+  }
+
+  &.checked {
+    opacity: .3;
+  }
+
 `;
 
 const Paragraph = styled.p`
