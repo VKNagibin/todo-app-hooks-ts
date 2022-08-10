@@ -46,7 +46,7 @@ interface IProps {
     checkboxHandler: (id: string) => void;
 }
 
-const TodoList = (props: IProps): JSX.Element => {
+const TodoListItem = (props: IProps): JSX.Element => {
     const handleDelete = () => props.deleteHandler(props.id);
 
     const handleEdit = () => {
@@ -75,4 +75,4 @@ const TodoList = (props: IProps): JSX.Element => {
 
 }
 
-export default TodoList;
+export default TodoListItem;

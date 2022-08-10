@@ -15,7 +15,7 @@ interface IProps {
     handleDeleteMarked: () => void;
 }
 
-const TodoListStyled = styled.ul`
+const Container = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -35,7 +35,7 @@ const TodoList = (props: IProps): JSX.Element | null => {
 
     return (
         !props.arrayTodos.length ? null :
-    <TodoListStyled>
+    <Container>
         {
             props.arrayTodos.map(item => (
                 <TodoListItem deleteHandler={deleteHandler}
@@ -50,7 +50,7 @@ const TodoList = (props: IProps): JSX.Element | null => {
         }
         <Button onClick={deleteMarkedHandler}>Delete marked</Button>
         <Button onClick={markAllHandler}>Mark all</Button>
-    </TodoListStyled>
+    </Container>
     )
 }
 
