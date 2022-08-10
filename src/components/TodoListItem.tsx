@@ -60,7 +60,7 @@ const TodoList = (props: IProps): JSX.Element => {
         }
     };
 
-    const handleCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleCheckbox = () => {
         props.checkboxHandler(props.id);
     }
 
