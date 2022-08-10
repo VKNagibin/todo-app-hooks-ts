@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import TodoListItem from "./TodoListItem";
-import {Button} from "./CreateTodo";
+import { Button } from "./CreateTodo";
 
 interface IProps {
     arrayTodos: {
@@ -23,25 +23,15 @@ const TodoListStyled = styled.ul`
 `
 
 const TodoList = (props: IProps): JSX.Element | null => {
-    const deleteHandler = (id: string) => {
-        props.handleDelete(id);
-    }
+    const deleteHandler = (id: string) => props.handleDelete(id);
 
-    const deleteMarkedHandler = () => {
-        props.handleDeleteMarked();
-    }
+    const deleteMarkedHandler = () => props.handleDeleteMarked();
 
-    const checkboxHandler = (id: string) => {
-        props.handleCheckbox(id);
-    }
+    const checkboxHandler = (id: string) => props.handleCheckbox(id);
 
-    const editHandler = (id: string, newContent: string) => {
-        props.handleEdit(id, newContent);
-    }
+    const editHandler = (id: string, newContent: string) => props.handleEdit(id, newContent);
 
-    const markAllHandler = () => {
-        props.handleMarkAll();
-    }
+    const markAllHandler = () => props.handleMarkAll();
 
     return (
         !props.arrayTodos.length ? null :

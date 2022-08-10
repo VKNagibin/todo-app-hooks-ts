@@ -89,9 +89,7 @@ function App() {
 
     }
 
-    const setStorageHandler = (todoList: Array<any>): void => {
-        localStorage.setItem("todoArray", JSON.stringify(todoList));
-    }
+    const setStorageHandler = (todoList: Array<any>): void => localStorage.setItem("todoArray", JSON.stringify(todoList));
 
   return (
     <AppWrapper>

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {Button} from "./CreateTodo";
+import { Button } from "./CreateTodo";
 import React from "react";
 
 const ListItem = styled.li`
@@ -47,9 +47,7 @@ interface IProps {
 }
 
 const TodoList = (props: IProps): JSX.Element => {
-    const handleDelete = () => {
-        props.deleteHandler(props.id);
-    };
+    const handleDelete = () => props.deleteHandler(props.id);
 
     const handleEdit = () => {
         let promptValue = prompt("Edit task");
@@ -60,9 +58,7 @@ const TodoList = (props: IProps): JSX.Element => {
         }
     };
 
-    const handleCheckbox = () => {
-        props.checkboxHandler(props.id);
-    }
+    const handleCheckbox = () => props.checkboxHandler(props.id);
 
     return(
     <ListItem className={props.checked ? "checked": ""}>
