@@ -1,22 +1,13 @@
-import styled from "styled-components";
-import TodoList from "./TodoList";
-import CreateTodo from "./CreateTodo";
-import {nanoid} from "nanoid";
-import {useState, useEffect} from "react";
-
-const AppWrapper = styled.div.attrs({className: "App"})`
-  padding: 20px;
-  width: 100%;
-  min-height: 100vh;
-  background: rgba(134, 190, 208, 0.18);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 50px;
-`
+import { AppWrapper } from "./styled";
+import TodoList from "../TodoList";
+import CreateTodo from "../CreateTodo";
+import { nanoid } from "nanoid";
+import React, { useState, useEffect, useCallback, memo } from "react";
+import ITodo from "./types";
 
 function App() {
-    const [todoArray, setTodoArray] = useState<{content: string, id: string, checked: boolean}[]>([]);
+    const [todoArray, setTodoArray] = useState<ITodo[]>([]);
+
     const addTodo = (value: string): void => {
         let prevArray = todoArray.slice();
         prevArray.push(
@@ -25,16 +16,15 @@ function App() {
                 id: nanoid(),
                 checked: false,
             });
-        setTodoArray(prevArray);
-        setStorageHandler(prevArray);
+        updateTodos(prevArray);
     }
 
     useEffect(() => {
         try {
-            let json: any = localStorage.getItem("todoArray");
-            json = JSON.parse(json)
-            if (json !== null) {
-                setTodoArray(json)
+            const json: any = localStorage.getItem("todoArray");
+            const arrayTodos = JSON.parse(json)
+            if (arrayTodos !== null) {
+                updateTodos(arrayTodos);
             }
         } catch {
             localStorage.clear();
@@ -46,9 +36,13 @@ function App() {
         let index = prevArray.findIndex(item => item.id === id);
         if (index !== -1) {
             prevArray.splice(index, 1);
-            setTodoArray(prevArray);
-            setStorageHandler(prevArray);
+            updateTodos(prevArray);
         }
+    }
+
+    const updateTodos = (array: ITodo[]) => {
+        setTodoArray(array);
+        setStorageHandler(array);
     }
 
     const handleEdit = (id: string, newContent: string) => {
@@ -56,8 +50,7 @@ function App() {
         let index = prevArray.findIndex(item => item.id === id);
         if (index !== -1) {
             prevArray[index].content = newContent;
-            setTodoArray(prevArray);
-            setStorageHandler(prevArray);
+            updateTodos(prevArray);
         }
     }
 
@@ -66,7 +59,7 @@ function App() {
         let index = prevArray.findIndex(item => item.id === id);
         if (index !== -1) {
             prevArray[index].checked = !prevArray[index].checked;
-            setTodoArray(prevArray);
+            updateTodos(prevArray);
         }
     }
 
@@ -78,15 +71,13 @@ function App() {
         } else {
             prevArray.forEach(item => item.checked = false);
         }
-        setTodoArray(prevArray);
+        updateTodos(prevArray);
     }
 
     const handleDeleteMarked = () => {
         let prevArray = todoArray.slice();
         let unmarkedTodos = prevArray.filter(item => item.checked === false);
-        setTodoArray(unmarkedTodos);
-        setStorageHandler(unmarkedTodos);
-
+        updateTodos(unmarkedTodos);
     }
 
     const setStorageHandler = (todoList: Array<any>): void => localStorage.setItem("todoArray", JSON.stringify(todoList));
@@ -95,14 +86,14 @@ function App() {
     <AppWrapper>
       <CreateTodo addTodo={ addTodo } />
       <TodoList arrayTodos={ todoArray }
-                handleDelete={ handleDelete }
-                handleCheckbox={handleCheckbox}
-                handleEdit={handleEdit}
-                handleMarkAll={handleMarkAll}
-                handleDeleteMarked={handleDeleteMarked}
+             handleDelete={ handleDelete }
+             handleCheckbox={handleCheckbox}
+             handleEdit={handleEdit}
+             handleMarkAll={handleMarkAll}
+             handleDeleteMarked={handleDeleteMarked}
       />
     </AppWrapper>
   );
 }
 
-export default App;
+export default memo(App);
