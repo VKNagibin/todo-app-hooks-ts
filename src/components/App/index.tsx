@@ -67,11 +67,8 @@ function App() {
     const handleMarkAll = () => {
         let prevArray = cloneShallow(todoArray);
         let haveFalse = prevArray.findIndex(item => item.checked === false);
-        if (haveFalse !== -1) {
-            prevArray.forEach(item => item.checked = true);
-        } else {
-            prevArray.forEach(item => item.checked = false);
-        }
+        const flag = haveFalse !== -1;
+        prevArray.forEach(item => item.checked = flag);
         updateTodos(prevArray);
     }
 
