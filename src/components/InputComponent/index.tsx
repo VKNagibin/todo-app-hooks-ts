@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {memo, useEffect, useState} from "react";
 import { Input } from "./styled";
 
 interface IProps {
@@ -23,4 +23,4 @@ const InputComponent = (props: IProps): JSX.Element => {
     )
 }
 
-export default InputComponent;
+export default memo(InputComponent);

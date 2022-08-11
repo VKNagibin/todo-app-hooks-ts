@@ -1,0 +1,1 @@
+export const cloneShallow = (arr: any[]) => arr.slice();

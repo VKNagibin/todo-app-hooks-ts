@@ -2,8 +2,9 @@ import ListItem from "../ListItem";
 import { Button } from "../CreateTodo/styled";
 import { Container } from "./styled";
 import IProps from "./types";
+import {memo} from "react";
 
-const Index = (props: IProps): JSX.Element | null => {
+const TodoList = (props: IProps): JSX.Element | null => {
     const deleteHandler = (id: string) => props.handleDelete(id);
 
     const deleteMarkedHandler = () => props.handleDeleteMarked();
@@ -35,4 +36,4 @@ const Index = (props: IProps): JSX.Element | null => {
     )
 }
 
-export default Index;
+export default memo(TodoList);

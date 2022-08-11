@@ -4,12 +4,13 @@ import CreateTodo from "../CreateTodo";
 import { nanoid } from "nanoid";
 import React, { useState, useEffect, useCallback, memo } from "react";
 import ITodo from "./types";
+import { cloneShallow } from "../../utilities/cloneShallow";
 
 function App() {
     const [todoArray, setTodoArray] = useState<ITodo[]>([]);
 
     const addTodo = (value: string): void => {
-        let prevArray = todoArray.slice();
+        let prevArray = cloneShallow(todoArray);
         prevArray.push(
             {
                 content: value,
@@ -32,7 +33,7 @@ function App() {
     },[]);
 
     const handleDelete = (id: string) => {
-        let prevArray = todoArray.slice();
+        let prevArray = cloneShallow(todoArray);
         let index = prevArray.findIndex(item => item.id === id);
         if (index !== -1) {
             prevArray.splice(index, 1);
@@ -46,7 +47,7 @@ function App() {
     }
 
     const handleEdit = (id: string, newContent: string) => {
-        let prevArray = todoArray.slice();
+        let prevArray = cloneShallow(todoArray);
         let index = prevArray.findIndex(item => item.id === id);
         if (index !== -1) {
             prevArray[index].content = newContent;
@@ -55,7 +56,7 @@ function App() {
     }
 
     const handleCheckbox = (id: string) => {
-        let prevArray = todoArray.slice();
+        let prevArray = cloneShallow(todoArray);
         let index = prevArray.findIndex(item => item.id === id);
         if (index !== -1) {
             prevArray[index].checked = !prevArray[index].checked;
@@ -64,7 +65,7 @@ function App() {
     }
 
     const handleMarkAll = () => {
-        let prevArray = todoArray.slice();
+        let prevArray = cloneShallow(todoArray);
         let haveFalse = prevArray.findIndex(item => item.checked === false);
         if (haveFalse !== -1) {
             prevArray.forEach(item => item.checked = true);
@@ -75,7 +76,7 @@ function App() {
     }
 
     const handleDeleteMarked = () => {
-        let prevArray = todoArray.slice();
+        let prevArray = cloneShallow(todoArray);
         let unmarkedTodos = prevArray.filter(item => item.checked === false);
         updateTodos(unmarkedTodos);
     }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import IProps from "./types";
 import { Checkbox, ListItem, Paragraph, BtnGroup } from "./styled";
 import { Button } from "../CreateTodo/styled";
@@ -31,4 +31,4 @@ const TodoListItem = (props: IProps): JSX.Element => {
     )
 }
 
-export default TodoListItem;
+export default memo(TodoListItem);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import InputComponent from "../InputComponent";
 import { Wrapper, Button } from "./styled";
 
@@ -30,4 +30,4 @@ const CreateTodo = (props: Props): JSX.Element => {
     )
 }
 
-export default React.memo(CreateTodo);
+export default memo(CreateTodo);
