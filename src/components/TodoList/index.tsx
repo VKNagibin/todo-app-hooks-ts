@@ -1,11 +1,12 @@
 import ListItem from "../ListItem";
+import React, { useCallback } from "react";
 import { Button } from "../CreateTodo/styled";
 import { Container } from "./styled";
-import IProps from "./types";
+import IPropsTodoList from "./types";
 import {memo} from "react";
 
-const TodoList = (props: IProps): JSX.Element | null => {
-    const deleteHandler = (id: string) => props.handleDelete(id);
+const TodoList = (props: IPropsTodoList): JSX.Element | null => {
+    const deleteHandler = useCallback((id: string) => props.handleDelete(id) ,[props.handleDelete]);
 
     const deleteMarkedHandler = () => props.handleDeleteMarked();
 

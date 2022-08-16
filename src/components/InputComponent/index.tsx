@@ -1,12 +1,9 @@
 import React, {memo, useEffect, useState} from "react";
 import { Input } from "./styled";
+import IPropsTodoInput from "./types";
 
-interface IProps {
-    getValue: (value: string) => void,
-    clickCount: number,
-}
 
-const InputComponent = (props: IProps): JSX.Element => {
+const InputComponent = (props: IPropsTodoInput): JSX.Element => {
     const [value, setValue] = useState<string>('');
 
     const changeHandler = (e:React.ChangeEvent<HTMLInputElement> ) => {

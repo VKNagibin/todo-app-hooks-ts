@@ -1,16 +1,14 @@
-import React, { memo, useState } from "react";
+import React, {memo, useState} from "react";
 import InputComponent from "../InputComponent";
 import { Wrapper, Button } from "./styled";
+import IPropsTodoCreate from "./types";
 
-type Props = {
-    addTodo: (value: string) => void;
-}
 
-const CreateTodo = (props: Props): JSX.Element => {
+const CreateTodo = (props: IPropsTodoCreate): JSX.Element => {
     const [clickCount, setClickCount] = useState<number>(0);
     let inputValue = "";
 
-    const handleClick = (e:React.MouseEvent<HTMLButtonElement>): void => {
+    const handleClick = (): void => {
         const val = inputValue;
         if (val) {
             props.addTodo(val);

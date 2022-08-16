@@ -1,4 +1,4 @@
-export default interface IProps {
+export default interface IPropsTodoListItem {
     id: string;
     content: string;
     checked: boolean;

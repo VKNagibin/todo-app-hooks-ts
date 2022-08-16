@@ -1,4 +1,4 @@
-export default interface ITodo {
+export default interface ITodoApp {
     content: string,
     id: string,
     checked: boolean,

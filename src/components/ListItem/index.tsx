@@ -1,9 +1,9 @@
 import React, {memo} from "react";
-import IProps from "./types";
+import IPropsTodoListItem from "./types";
 import { Checkbox, ListItem, Paragraph, BtnGroup } from "./styled";
 import { Button } from "../CreateTodo/styled";
 
-const TodoListItem = (props: IProps): JSX.Element => {
+const TodoListItem = (props: IPropsTodoListItem): JSX.Element => {
     const handleDelete = () => props.deleteHandler(props.id);
 
     const handleEdit = () => {
